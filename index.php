@@ -1,14 +1,19 @@
 <?php
-//Register Vendor
-require __DIR__ . '/vendor/autoload.php';
+session_start();
 
-//Website Settings
-$title = 'Home';
-$url = 'http://localhost/';
+require_once 'vendor/autoload.php';
 
-//Require the template
-require __DIR__ . '/templates/header.view.php';
-require __DIR__ . '/templates/home.view.php';
-require __DIR__ . '/templates/footer.view.php';
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$capsule = new Capsule;
+$configs = require_once __DIR__ . '/configs/database.php';
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
+$capsule->addConnection($configs['mysql']);
+
+$c = Capsule::table('configs')->where('id','1')->first();
+$q = Capsule::table('questions')->get();
 
 ?>
+
+<?php require_once 'templates/home.php'; ?>
