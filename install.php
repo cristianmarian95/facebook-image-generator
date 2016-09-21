@@ -41,12 +41,30 @@ if(!Capsule::schema()->hasTable('users','images','configs')){
 	    $table->increments('id');
 	    $table->string('title');
 	    $table->string('brand');
+	    $table->string('description');
+	    $table->string('keywords');
 	    $table->string('path');
 	    $table->string('app_id');
 	    $table->string('app_secret');
 	    $table->string('app_version');
 	    $table->timestamps();
 	});
+
+	Capsule::schema()->create('ads', function($table)
+	{
+		$table->increments('id');
+		$table->longtext('code');
+		$table->timestamps();
+	});
+
+	Capsule::schema()->create('onclick', function($table)
+	{
+		$table->increments('id');
+		$table->longtext('code');
+		$table->boolean('active');
+		$table->timestamps();
+	});
+
 
 	//Insert the default values
 	Capsule::table('configs')->insert([
@@ -60,6 +78,9 @@ if(!Capsule::schema()->hasTable('users','images','configs')){
 	Capsule::table('users')->insert([
 		'email' => 'admin@demo.com', 
 		'password' => password_hash('admin', PASSWORD_DEFAULT)
+		]);
+	Capsule::table('onclick')->insert([
+		'code' => 'Enter your javascript code here',
 		]);
 
 	echo '<center>';

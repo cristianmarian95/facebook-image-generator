@@ -1,6 +1,6 @@
 body{
 	background-color: #eaeaea;
-	font-family: 'Raleway';
+	font-family: 'Raleway' sans-serif;
 }
 .navigation {
 	background-color: steelblue;
@@ -14,10 +14,37 @@ body{
 	font-weight: 400;
 }
 
-.navbar-nav > li > a,
-.navbar-nav > li > a:hover {
+.navbar-nav > li > a {
 	color: #FFF;
+	margin-left: 5px;
+	border-radius: 5px;
 	background-color: steelblue;
+	transition: background-color 0.2s;
+	-webkit-transition: background-color 0.2s;
+	-o-transition: background-color 0.2s;
+	-moz-transition: background-color 0.2s;
+}
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus,
+.navbar-nav > li > a:active {
+	color: #FFF;
+	background-color: rgba(60,112,156,0.54);
+	transition: background-color 0.2s;
+	-webkit-transition: background-color 0.2s;
+	-o-transition: background-color 0.2s;
+	-moz-transition: background-color 0.2s;
+}
+
+.nav .open > a, 
+.nav .open > a:focus, 
+.nav .open > a:hover {
+	color: #FFF;
+	background-color: rgba(60,112,156,0.54);
+	transition: background-color 0.2s;
+	-webkit-transition: background-color 0.2s;
+	-o-transition: background-color 0.2s;
+	-moz-transition: background-color 0.2s;
+
 }
 
 .main {
@@ -35,4 +62,16 @@ body{
 	width: 40%;
 	padding: 15px;
 	margin: auto;
+}
+label {
+	font-family: sans-serif;
+}
+.form-control {
+	font-family: sans-serif;
+}
+.navbar-toggle {
+	color: #FFF;
+}
+.ad-space {
+	margin-bottom: 10px;
 }

@@ -20,26 +20,31 @@
     <div class="container">
       <div class="navbar-header">
          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false">
-         <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
+          <i class="fa fa-bars" aria-hidden="true"></i>
          </button>
          <a class="navbar-brand" href="#"><?php echo $c->brand; ?></a>
       </div>
 
       <div class="collapse navbar-collapse" id="collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php">Dashboard</a></li>
-          <li><a href="account.php">Account</a></li>
-          <li><a href="create.php">Create</a></li>
-          <li><a href="configs.php">Configs</a></li>
-          <li><a href="logout.php">Logout</a></li>
+          <li><a href="index.php"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+          <li><a href="account.php"><i class="fa fa-user" aria-hidden="true"></i> Account</a></li>
+          <li><a href="create.php"><i class="fa fa-pencil-square" aria-hidden="true"></i> Create</a></li>
+          <li><a href="configs.php"><i class="fa fa-cogs" aria-hidden="true"></i> Configs</a></li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-code" aria-hidden="true"></i> Advertisements <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="adslist.php"><i class="fa fa-list-alt" aria-hidden="true"></i> Banners</a></li>
+              <li><a href="ads.php"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Banner</a></li>
+              <li><a href="onclick.php"><i class="fa fa-chain-broken" aria-hidden="true"></i> OnClick AD</a>
+            </ul>
+          </li>
+          <li><a href="logout.php"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
         </ul>
       </div>
     </div>
   </nav>
-
+  
   <?php if($error) { ?>
   <div class="container">
     <div class="alert alert-danger alert-dismissible" role="alert">
@@ -67,15 +72,15 @@
         <input type="file" name="upload" id="file">
       </div>
       <div class="form-group">
-        <label for="title">Quiz title</label>
+        <label for="title">Quiz title  (<font color="red">Max 50 characters</font>)</label>
         <input type="text" name="title" class="form-control" id="title" placeholder="Enter the quiz title">
       </div>
       <div class="form-group">
-        <label for="question">Quiz question (max 50 characters)</label>
+        <label for="question">Quiz question (<font color="red">Max 50 characters</font>)</label>
         <input type="text" name="question" class="form-control" id="question" placeholder="Enter the quiz question ">
       </div>
       <div class="form-group">
-        <label for="answer">Quiz answer (Ex: here is my answer1 , here is my answer2 , etc)</label>
+        <label for="answer">Quiz answer. Ex: Here is my answer1,Here is my answer2 (<font color="red">Max 40 characters per answer</font>)</label>
         <textarea class="form-control" name="answer" id="answer" placeholder="Enter the quiz answer"></textarea>
       </div>
       <button type="submit" class="btn btn-default">Create</button>

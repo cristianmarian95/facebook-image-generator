@@ -23,6 +23,8 @@ $v = new Violin;
 $v->validate([
     'title|Title'  => [$_POST['title'], 'required'],
     'brand|Brand'   => [$_POST['brand'], 'required'],
+    'description|Description'   => [$_POST['desc'], 'required'],
+    'keywords|Keywords'   => [$_POST['keyw'], 'required'],
     'path|Path url'   => [$_POST['path'], 'required|url'],
     'app_id|App ID'   => [$_POST['app_id'], 'required'],
     'app_secret|App Secret'   => [$_POST['app_secret'], 'required'],
@@ -38,6 +40,8 @@ if(!$v->passes()) {
 Capsule::table('configs')->where('id','1')->update([
 	'title' => $_POST['title'],
 	'brand' => $_POST['brand'],
+    'description' => $_POST['desc'],
+    'keywords' => $_POST['keyw'],
 	'path' => $_POST['path'],
 	'app_id' => $_POST['app_id'],
 	'app_secret' => $_POST['app_secret'],

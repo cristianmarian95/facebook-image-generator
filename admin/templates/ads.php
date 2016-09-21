@@ -15,7 +15,7 @@
     <title><?php echo $c->title . ' | AdminCP ';?></title>
   </head>
 <body>
-  <!-- Navigation -->
+<!-- Navigation -->
   <nav class="navbar navigation">
     <div class="container">
       <div class="navbar-header">
@@ -45,25 +45,34 @@
     </div>
   </nav>
   
+  <?php if($error) { ?>
+  <div class="container">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong><?php echo $error; ?></strong>
+    </div>
+  </div>
+  <?php } ?>
+
+  <?php if($success) { ?>
+  <div class="container">
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong><?php echo $success; ?></strong>
+    </div>
+  </div>
+  <?php } ?>
+
   <!-- Main Content -->
   <main class="container main">
-    <div class="row"> 
-      <?php if(count($q) == 0) { ?> 
-        <div class="alert alert-info" role="alert" style="width: 50%; margin:auto;">No quizes found.</div>
-      <?php } ?>
-      <?php if($q) { foreach ($q as $q) { ?>
-        <div class="col-lg-3 col-md-4 col-sm-12">
-          <a href="edit.php?id=<?php echo $q->id; ?>">
-            <div class="panel panel-default">
-              <div class="panel-heading"><?php echo $q->title; ?></div>
-              <div class="panel-body">
-                <img src="<?php echo $c->path; ?>/storage/backgrounds/<?php echo $q->url; ?>" width="100%">
-              </div>
-            </div>
-          </a>
-        </div>
-      <?php } } ?>
-    </div>
+    <h4>Add new advertise</h4>
+    <form action="actions/takeads.php?action=create" method="post">
+      <div class="form-group">
+        <label for="code">HTML Code (<font color="red">250x150 or 250x250</font>)</label>
+        <textarea class="form-control" name="code" id="code" placeholder="Enter the ads code" style="height: 250px;"></textarea>
+      </div>
+      <button type="submit" class="btn btn-default">Create</button>
+    </form>
   </main>
   <!-- jQuesry -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

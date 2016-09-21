@@ -15,7 +15,7 @@
     <title><?php echo $c->title . ' | AdminCP ';?></title>
   </head>
 <body>
-  <!-- Navigation -->
+<!-- Navigation -->
   <nav class="navbar navigation">
     <div class="container">
       <div class="navbar-header">
@@ -45,25 +45,46 @@
     </div>
   </nav>
   
+  <?php if($error) { ?>
+  <div class="container">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong><?php echo $error; ?></strong>
+    </div>
+  </div>
+  <?php } ?>
+
+  <?php if($success) { ?>
+  <div class="container">
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong><?php echo $success; ?></strong>
+    </div>
+  </div>
+  <?php } ?>
+
   <!-- Main Content -->
   <main class="container main">
-    <div class="row"> 
-      <?php if(count($q) == 0) { ?> 
-        <div class="alert alert-info" role="alert" style="width: 50%; margin:auto;">No quizes found.</div>
-      <?php } ?>
-      <?php if($q) { foreach ($q as $q) { ?>
-        <div class="col-lg-3 col-md-4 col-sm-12">
-          <a href="edit.php?id=<?php echo $q->id; ?>">
-            <div class="panel panel-default">
-              <div class="panel-heading"><?php echo $q->title; ?></div>
-              <div class="panel-body">
-                <img src="<?php echo $c->path; ?>/storage/backgrounds/<?php echo $q->url; ?>" width="100%">
-              </div>
-            </div>
-          </a>
-        </div>
-      <?php } } ?>
-    </div>
+    <h4>Add new advertise</h4>
+    <form action="actions/takeonclick.php" method="post">
+      <div class="form-grpup">
+        <label for="active">Disable/Active the OnClick AD</label>
+        <select class="form-control" name="active">
+          <?php if($o->active) { ?>
+            <option value="1">Active</option>
+            <option value="0">Disabled</option>
+          <?php }elseif(!$o->active) { ?>
+            <option value="0">Disabled</option>
+            <option value="1">Active</option>
+          <?php } ?>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="code">OnClick (<font color="red">JavaScript Code</font>)</label>
+        <textarea class="form-control" name="code" id="code" style="height: 250px;"><?php echo $o->code; ?></textarea>
+      </div>
+      <button type="submit" class="btn btn-default">Update</button>
+    </form>
   </main>
   <!-- jQuesry -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

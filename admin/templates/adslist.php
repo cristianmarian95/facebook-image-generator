@@ -15,7 +15,7 @@
     <title><?php echo $c->title . ' | AdminCP ';?></title>
   </head>
 <body>
-  <!-- Navigation -->
+<!-- Navigation -->
   <nav class="navbar navigation">
     <div class="container">
       <div class="navbar-header">
@@ -44,26 +44,49 @@
       </div>
     </div>
   </nav>
-  
+
+  <?php if($error) { ?>
+  <div class="container">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong><?php echo $error; ?></strong>
+    </div>
+  </div>
+  <?php } ?>
+
+  <?php if($success) { ?>
+  <div class="container">
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong><?php echo $success; ?></strong>
+    </div>
+  </div>
+  <?php } ?>
+
   <!-- Main Content -->
   <main class="container main">
-    <div class="row"> 
-      <?php if(count($q) == 0) { ?> 
-        <div class="alert alert-info" role="alert" style="width: 50%; margin:auto;">No quizes found.</div>
-      <?php } ?>
-      <?php if($q) { foreach ($q as $q) { ?>
-        <div class="col-lg-3 col-md-4 col-sm-12">
-          <a href="edit.php?id=<?php echo $q->id; ?>">
-            <div class="panel panel-default">
-              <div class="panel-heading"><?php echo $q->title; ?></div>
-              <div class="panel-body">
-                <img src="<?php echo $c->path; ?>/storage/backgrounds/<?php echo $q->url; ?>" width="100%">
-              </div>
-            </div>
-          </a>
-        </div>
-      <?php } } ?>
-    </div>
+    <h4>ADS List</h4>
+    <table class="table table-striped">
+      <thead>
+        <th><center>#ID</center></th>
+        <th>Advertisement</th>
+        <th><center>Actions</center></th>
+      </thead>
+      <tbody>
+      <?php if($a) { foreach ($a as $a) { ?>
+        <tr>
+          <td><?php echo '<center>' . $a->id . '</center>'; ?></td>
+          <td><?php echo $a->code; ?></td>
+          <td>
+            <center>
+              <a href="editads.php?id=<?php echo $a->id; ?>" class="label label-info">Edit</a>
+              <a href="actions/takeads.php?action=remove&id=<?php echo $a->id; ?>" class="label label-danger">Delete</a>
+            </center>
+          </td>
+        </tr>
+        <?php } } ?>
+      </tbody>
+    </table>
   </main>
   <!-- jQuesry -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

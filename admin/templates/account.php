@@ -20,21 +20,26 @@
     <div class="container">
       <div class="navbar-header">
          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false">
-         <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
+          <i class="fa fa-bars" aria-hidden="true"></i>
          </button>
          <a class="navbar-brand" href="#"><?php echo $c->brand; ?></a>
       </div>
 
       <div class="collapse navbar-collapse" id="collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php">Dashboard</a></li>
-          <li><a href="account.php">Account</a></li>
-          <li><a href="create.php">Create</a></li>
-          <li><a href="configs.php">Configs</a></li>
-          <li><a href="logout.php">Logout</a></li>
+          <li><a href="index.php"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+          <li><a href="account.php"><i class="fa fa-user" aria-hidden="true"></i> Account</a></li>
+          <li><a href="create.php"><i class="fa fa-pencil-square" aria-hidden="true"></i> Create</a></li>
+          <li><a href="configs.php"><i class="fa fa-cogs" aria-hidden="true"></i> Configs</a></li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-code" aria-hidden="true"></i> Advertisements <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="adslist.php"><i class="fa fa-list-alt" aria-hidden="true"></i> Banners</a></li>
+              <li><a href="ads.php"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Banner</a></li>
+              <li><a href="onclick.php"><i class="fa fa-chain-broken" aria-hidden="true"></i> OnClick AD</a>
+            </ul>
+          </li>
+          <li><a href="logout.php"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
         </ul>
       </div>
     </div>
@@ -61,7 +66,7 @@
   <!-- Main Content -->
   <main class="container main">
     <h4>My Account</h4>
-    <form action="actions/takeprofile.php" method="post" enctype="multipart/form-data">
+    <form action="actions/takeprofile.php" method="post">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" name="email" class="form-control" id="email" value="<?php echo $u->email; ?>">

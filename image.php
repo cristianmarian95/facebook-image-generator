@@ -67,6 +67,7 @@
 
 	//Get Backgound image
 	$background = imagecreatefromjpeg($c->path . '/storage/backgrounds/' . $q->url);
+	$background = imagescale($background, 600, 300);
 
 	//Get Border image
 	$border = imagecreatefrompng('storage/backgrounds/border.png');
@@ -75,7 +76,6 @@
 	$avatar = imagecreatefromjpeg($user['picture']['url']);
 	$avatar = imagescale($avatar, 100, 100);
 	
-
 	//Create the image 
 	$image = imagecreate(600, 300);
 	$image = imagecreatetruecolor(600, 300);
@@ -86,13 +86,12 @@
 	//Font
 	$font = 'assets/fonts/font.ttf';
 
-	
-	// Add the images
+	//Add the images
 	imagecopy($image, $background, 0, 0, 0, 0, 600, 300);
 	imagecopy($image, $border, 25, 105, 0, 0, 110, 110);
 	imagecopy($image, $avatar, 30, 110, 0, 0, 100, 100);
 
-	// Add the text max 50 char
+	//Add the text max 50 char
 	if(strlen($q->question) <= 20){
 		imagefttext($image, 25, 0, 30, 80, $color, $font, $q->question);
 	}elseif(strlen($q->question) <= 30){
@@ -102,15 +101,25 @@
 	}elseif(strlen($q->question) > 40){
 		imagefttext($image, 13, 0, 30, 80, $color, $font, $q->question);
 	}
+
+	//Add the text answer max 40 char per answer	
+	if(strlen($answers[$answer]) <= 20){
+		imagefttext($image, 18, 0, 150, 180, $color, $font, $answers[$answer]);
+	}elseif(strlen($answers[$answer]) <= 30){
+		imagefttext($image, 16, 0, 150, 180, $color, $font, $answers[$answer]);
+	}elseif(strlen($answers[$answer]) <= 40){
+		imagefttext($image, 14, 0, 150, 180, $color, $font, $answers[$answer]);
+	}
 	
-	imagefttext($image, 18, 0, 150, 180, $color, $font, $answers[$answer]);
+	//Add the Facebook name
 	imagefttext($image, 20, 0, 150, 140, $color, $font, $user['name']);
 
-	// Set the new name & the path to save 
+	//Set the new name & the path to save 
 	$name = name(10);
 	$img = 'storage/created/'. $name .'.png';
 	$link = $c->path . '/' .$img;
 
+	//Set the Token for the created image
 	$token = $_COOKIE['token'];
 
 	Capsule::table('images')->insert([

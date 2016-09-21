@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<?php echo $c->description; ?>">
+    <meta name="keywords" content="<?php echo $c->keywords; ?>">
+    <meta name="og:app_id" content="<?php echo $c->app_id; ?>">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,400,600" rel="stylesheet">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/app.css" rel="stylesheet">
@@ -41,7 +44,7 @@
   <main class="container main">
     <div class="row">
       <!-- Left side -->
-      <div class="col-lg-9 col-md-8 col-sm-8">
+      <div class="col-lg-9 col-md-8 col-sm-8" style="margin-bottom: 15px;">
         <?php if(count($q) == 0) { ?> 
           <div class="alert alert-info" role="alert" style="width: 80%; margin:auto;">No quizes found.</div>
         <?php } ?>
@@ -63,15 +66,11 @@
       <!-- Right side -->
       <div class="col-lg-3 col-md-4 col-sm-4">
           <div class="row">
-            <div class="col-xs-12">
-              Ad Space
-            </div>
-            <div class="col-xs-12">
-              Ad Space
-            </div>
-            <div class="col-xs-12">
-              Ad Space
-            </div>
+            <?php if(count($a) > 0) { foreach ($a as $a) { ?>
+              <div class="col-xs-12 ad-space">
+                <center><?php echo $a->code; ?></center>
+              </div>
+            <?php } } ?>
           </div>
       </div>
     </div>

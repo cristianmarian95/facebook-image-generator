@@ -13,7 +13,7 @@ $capsule->addConnection($configs['mysql']);
 
 $c = Capsule::table('configs')->where('id','1')->first();
 $q = Capsule::table('questions')->get();
-
+$a = Capsule::table('ads')->get();
 ?>
 
 <?php require_once 'templates/home.php'; ?>

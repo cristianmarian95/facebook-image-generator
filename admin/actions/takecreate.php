@@ -22,7 +22,7 @@ $capsule->addConnection($configs['mysql']);
 $v = new Violin;
 
 $v->validate([
-    'title|Title'   => [$_POST['title'], 'required'],
+    'title|Title'   => [$_POST['title'], 'required|max(50)'],
     'question|Question'   => [$_POST['question'], 'required|max(50)'],
     'answer|Answers'   => [$_POST['answer'], 'required'],
 ]);
@@ -31,6 +31,17 @@ if(!$v->passes()) {
     $_SESSION['flash'] = $v->errors()->first();
     header('Location: ../create.php');
     exit;
+}
+
+$answers = explode(',', $_POST['answer']);
+
+foreach ($answers as $answer) {
+    $v->validate(['answer|Answer' => [$answer, 'max(40)']]);
+    if(!$v->passes()) {
+        $_SESSION['flash'] = $v->errors()->first();
+        header('Location: ../create.php');
+        exit;
+    }
 }
 
 if(!isset($_FILES['upload'])){
